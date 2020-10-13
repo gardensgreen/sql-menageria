@@ -192,6 +192,8 @@ WHERE population_estimate_2018 - population_census_2010 >= 200000;
 */
 
 -- your query here
+SELECT name, city FROM airports
+INNER JOIN cities ON (airports.city_id = cities.id);
 
 \echo ========= Problem 4.2 ====================================================
 \echo
@@ -204,7 +206,9 @@ WHERE population_estimate_2018 - population_census_2010 >= 200000;
 */
 
 -- your query here
-
+SELECT COUNT(city) from cities
+INNER JOIN airports on (cities.id = airports.city_id)
+WHERE city = 'New York';
 --------------------------------------------------------------------------------
 ---- Bonuses:
 --------------------------------------------------------------------------------
