@@ -42,6 +42,7 @@ SELECT (city, state, population_estimate_2018) FROM cities;
 
 -- your query here
 SELECT name FROM airports;
+
 ---- Phase 3: Add WHERE clauses ------------------------------------------------
 -- Select specific rows from a table using WHERE and common operators.
 --------------------------------------------------------------------------------
@@ -53,7 +54,8 @@ SELECT name FROM airports;
 */
 
 -- your query here
--- SELECT estimated_population_2018 FROM cities where city = 'San Diego';
+SELECT estimated_population_2018 FROM cities WHERE city = 'San Diego';
+
 \echo ========= Problem 3.2 ====================================================
 \echo
 /*
@@ -63,6 +65,9 @@ SELECT name FROM airports;
 */
 
  -- your query here
+SELECT (city, population_estimate_2018)
+FROM cities
+WHERE city IN ('Phoenix', 'Jacksonville', 'Charlotte', 'Nashville');
 
 \echo ========= Problem 3.3 ====================================================
 \echo
@@ -73,6 +78,9 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT (city)
+FROM cities
+WHERE population_estimate_2018 BETWEEN 800000 AND 900000;
 
 \echo ========= Problem 3.4 ====================================================
 \echo
@@ -83,6 +91,9 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT (city, state, population_estimate_2018)
+FROM cities
+WHERE population_estimate_2018 > 1000000;
 
 \echo ========= Problem 3.5 ====================================================
 \echo
@@ -93,19 +104,22 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT (city, population_estimate_2018 / 1000000)
+FROM cities
+WHERE state = 'Texas';
 
 \echo ========= Problem 3.6 ====================================================
 \echo
 /*
-3.6) Write a SQL query to get the city and estimated population in 2018 in
-     number of millions (i.e. without zeroes at the end: 1 million), and that
-     uses a WHERE clause to return only the cities in Texas. Write a SQL query
-     that uses a WHERE clause to get the city, state, and estimated population
+3.6) Write a SQL query that uses a WHERE clause to get the city, state, and estimated population
      in 2018 of cities that are NOT in the following states:
      New York, California, Texas.
 */
 
 -- your query here
+SELECT (city, state, population_estimate_2018 )
+FROM cities
+WHERE state NOT IN ('New York', 'California', 'Texas');
 
 \echo ========= Problem 3.7 ====================================================
 \echo
@@ -117,6 +131,9 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT (city, state, population_estimate_2018)
+FROM cities
+WHERE city ILIKE 'S%';
 
 \echo ========= Problem 3.8 ====================================================
 \echo
@@ -128,6 +145,9 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT (city, land_area_sq_mi_2016, population_estimate_2018)
+FROM cities
+WHERE land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000;
 
 \echo ========= Problem 3.9 ====================================================
 \echo
@@ -139,6 +159,9 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT (city, land_area_sq_mi_2016, population_estimate_2018)
+FROM cities
+WHERE NOT (land_area_sq_mi_2016 > 400 AND population_estimate_2018 > 2000000) AND (land_area_sq_mi_2016 > 400 OR population_estimate_2018 > 2000000);
 
 \echo ========= Problem 3.10 ===================================================
 \echo
@@ -150,12 +173,16 @@ SELECT name FROM airports;
 */
 
 -- your query here
+SELECT(city, population_estimate_2018, population_census_2010)
+FROM cities
+WHERE population_estimate_2018 - population_census_2010 >= 200000;
 
 ---- Phase 4: Use a JOIN operation ---------------------------------------------
 -- Retrieve rows from multiple tables joining on a foreign key.
 -- The "airports" table has a foreign key called city_id that references the id
 -- column in the "cities" table.
 --------------------------------------------------------------------------------
+
 \echo ========= Problem 4.1 ====================================================
 \echo
 /*
